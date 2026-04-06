@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  /* These colors will be overridden by your Tailwind slate-50 background */
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* RECTIFIED BODY: Removed flex and place-items to allow full-width */
+body {
+  margin: 0;
+  padding: 0;
+  display: block; 
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ADDED: Ensures the React container fills the entire browser width */
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Smoothly animates the truck marker when coordinates change */
+.smooth-truck {
+  transition: all 1.0s ease-in-out;
+}
+
+/* Optional: Add a slight pulse to the truck to make it look "active" */
+.smooth-truck svg {
+  filter: drop-shadow(0 0 8px rgba(30, 64, 175, 0.4));
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+}
