@@ -1,0 +1,11 @@
+logistics_system.tar.gz
+logistics_system/venv
+logistics_system/logistics_service/__pycache__
+logistics_system/logistics_service/logistics.db
+logistics_system/logistics_service/app/__pycache__
+logistics_system/logistics_service/app/db/__pycache__
+logistics_system/logistics_service/app/models/__pycache__
+logistics_system/logistics_service/app/routers/__pycache__
+logistics_system/logistics_service/app/services/__pycache__
+logistics_system/eta_service/__pycache__
+logistics_system/eta_service/app/__pycache__

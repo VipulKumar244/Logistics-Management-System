@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+
+  # ─────────────────────────────────────────────
+  # ETA Microservice
+  # Runs on port 8001
+  # Swagger UI: http://localhost:8001/docs
+  # ─────────────────────────────────────────────
+  eta_service:
+    build:
+      context: ./eta_service
+    container_name: eta_service
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./eta_service/configs:/app/configs:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: uvicorn main:app --host 0.0.0.0 --port 8001 --reload
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/health')"]
+      interval: 8s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  # ─────────────────────────────────────────────
+  # Logistics Service
+  # Runs on port 8000
+  # Swagger UI: http://localhost:8000/docs
+  # ─────────────────────────────────────────────
+  logistics_service:
+    build:
+      context: ./logistics_service
+    container_name: logistics_service
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - ETA_SERVICE_URL=http://eta_service:8001
+      - DATABASE_URL=sqlite:///./logistics.db
+    depends_on:
+      eta_service:
+        condition: service_healthy
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
