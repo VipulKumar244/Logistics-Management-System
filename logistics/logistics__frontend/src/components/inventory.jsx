@@ -12,7 +12,7 @@ import {
 
 
 
-// ✅ 1. STATIC DATA
+
 
 const professionalInventory = [
 
@@ -56,7 +56,7 @@ const professionalInventory = [
 
 
 
-// ✅ 2. SUB-COMPONENTS
+
 
 function InventoryStat({ title, value, color, icon, onClick }) {
 
@@ -108,7 +108,7 @@ function StockBadge({ qty }) {
 
 
 
-// ✅ 3. MAIN COMPONENT
+
 
 export default function Inventory() {
 
@@ -182,13 +182,13 @@ const handleUpdate = () => {
 
 
 
-  // Add this handler alongside handleDeleteItem
+ 
 
 const handleEditItem = useCallback((item) => {
 
-  setNewItem(item); // Pre-fill the form with existing data
+  setNewItem(item); 
 
-  setIsAddModalOpen(true); // Open the same modal
+  setIsAddModalOpen(true); 
 
 }, []);
 
@@ -208,9 +208,8 @@ const handleEditItem = useCallback((item) => {
 
     setItemsList(prev => [...prev, { ...newItem, id }]);
 
-    setIsAddModalOpen(false); // Close modal
-
-    // Reset form
+    setIsAddModalOpen(false);
+  
 
     setNewItem({ name: '', brand: '', variant: '', category: 'Electronics', sku: '', stock: 0, warehouse: '', location: '' });
 
@@ -226,7 +225,6 @@ const handleEditItem = useCallback((item) => {
 
 
 
-  // Filter Logic
 
   const filteredItems = useMemo(() => {
 
@@ -234,7 +232,6 @@ const handleEditItem = useCallback((item) => {
 
    
 
-    // Category/Tab filter
 
     if (activeTab !== 'all' && activeTab !== 'low-stock') {
 
@@ -248,7 +245,6 @@ const handleEditItem = useCallback((item) => {
 
 
 
-    // Search filter (Functional with Black Text in UI)
 
     if (searchQuery.trim()) {
 
@@ -272,9 +268,7 @@ const handleEditItem = useCallback((item) => {
 
 
 
-  // ... (rest of the component JSX)
 
-  // Categories Calculation
 
   const categories = useMemo(() => {
 
